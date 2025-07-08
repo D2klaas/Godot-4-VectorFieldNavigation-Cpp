@@ -1,20 +1,27 @@
+// vfn_map.rs
 use godot::prelude::*;
-use std::collections::{HashMap, VecDeque};
 use crate::vfn_field::VFNField;
 use crate::vfn_node::VFNNode;
 
-#[derive(GodotClass)]
+#[derive(GodotClass, Debug)]
 #[class(init, base = RefCounted)]
 pub struct VFNMap {
-	// ... alle Felder ...
+    // interne Felder folgen bei Bedarf
 }
 
 #[godot_api]
 impl VFNMap {
-	#[func]
-	fn create_field(&self) -> VFNField {
-		VFNField::new(&self)
-	}
+    #[func]
+    pub fn create_field(&self) -> Gd<VFNField> {
+		let map_ptr = self as *const VFNMap;
+        Gd::from_init_fn(|base| {
+            // Accept a base of type Base<Node3D> and directly forward it.
+            VFNField {
+                map: map_ptr,
+            }
+        })
+
+    }
 
 	#[func]
 	fn add_node( v: Vector3 ) -> u32 {
@@ -26,7 +33,6 @@ impl VFNMap {
 		return 1;
 	}
 
-	#[func]
 	fn get_node_at( v: Vector2i ) -> VFNNode {
 		VFNNode {
 			index: 0,
@@ -58,7 +64,6 @@ impl VFNMap {
 
 	}
 
-	#[func]
 	fn get_node_from_index( index:u32 ) -> VFNNode{
 		VFNNode {
 			index: 0,
@@ -78,4 +83,4 @@ impl Default for VFNMap {
 		Self {
 		}
 	}
-}
+} 
