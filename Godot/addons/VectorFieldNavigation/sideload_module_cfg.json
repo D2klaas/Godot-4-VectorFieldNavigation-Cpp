@@ -1,0 +1,11 @@
+{
+	"description": "Vector field navigation plugin",
+	"host": "",
+	"name": "VectorFieldNavigation",
+	"type": "plugin",
+	"uuid": "",
+	"vendor": "DeckZwei",
+	"version": 0.3,
+	"version_major": 0,
+	"version_minor": 3
+}

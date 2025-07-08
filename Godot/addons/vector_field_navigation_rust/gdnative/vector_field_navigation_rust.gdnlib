@@ -1,0 +1,19 @@
+[general]
+singleton = false
+load_once = true
+symbol_prefix = "godot_"
+reloadable = true
+
+[entry]
+"OSX.64" = "res://addons/vector_field_navigation_rust/gdnative/bin/macos/libvector_field_navigation_rust.dylib"
+"X11.64" = "res://addons/vector_field_navigation_rust/gdnative/bin/linux/libvector_field_navigation_rust.so"
+"Android.arm64-v8a" = "res://addons/vector_field_navigation_rust/gdnative/bin/android/aarch64-linux-android/libvector_field_navigation_rust.so"
+"Windows.64" = "res://addons/vector_field_navigation_rust/gdnative/bin/windows/vector_field_navigation_rust.dll"
+"Android.x86_64" = "res://addons/vector_field_navigation_rust/gdnative/bin/android/x86_64-linux-android/libvector_field_navigation_rust.so"
+
+[dependencies]
+"Android.arm64-v8a" = []
+"Windows.64" = []
+"OSX.64" = []
+"Android.x86_64" = []
+"X11.64" = []

@@ -1,0 +1,9 @@
+[gd_resource type="NativeScript" load_steps=2 format=2]
+
+[ext_resource path="res://addons/vector_field_navigation_rust/gdnative/vector_field_navigation_rust.gdnlib" type="GDNativeLibrary" id=1]
+
+[resource]
+
+resource_name = "VectorFieldNavigationRust"
+class_name = "VectorFieldNavigationRust"
+library = ExtResource( 1 )

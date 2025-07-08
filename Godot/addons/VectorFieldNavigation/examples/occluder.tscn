@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://biv4umyd7y5up"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_3xxa2"]
+size = Vector3(12, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dftbt"]
+size = Vector3(12, 2, 2)
+
+[node name="Blocker" type="StaticBody3D"]
+transform = Transform3D(0.784073, 0, 0.620669, 0, 1, 0, -0.620669, 0, 0.784073, 76.4016, 1.3611, 69.6877)
+
+[node name="Tracked" type="MeshInstance3D" parent="." groups=["occluder"]]
+transform = Transform3D(0.999954, 0, -0.00961661, 0, 1, 0, 0.00961661, 0, 0.999954, 0, 0, 0)
+mesh = SubResource("BoxMesh_3xxa2")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_dftbt")
