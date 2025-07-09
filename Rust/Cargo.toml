@@ -2,9 +2,10 @@
 name = "vector_field_navigation"
 version = "0.1.0"
 edition = "2024"
+build = "post_build.rs"
 
 [lib]
 crate-type = ["cdylib"]  # Compile this crate to a dynamic C library.
 
 [dependencies]
-godot = { git = "https://github.com/godot-rust/gdext", branch = "master" }
+godot = { git = "https://github.com/godot-rust/gdext.git"}

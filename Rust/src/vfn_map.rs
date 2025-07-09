@@ -7,6 +7,9 @@ use crate::vfn_node::VFNNode;
 #[class(init, base = RefCounted)]
 pub struct VFNMap {
     // interne Felder folgen bei Bedarf
+	#[export]
+	#[init(val = GString::from("This is also a VFNMap"))]
+	pub label: GString,
 }
 
 #[godot_api]
@@ -17,7 +20,7 @@ impl VFNMap {
         Gd::from_init_fn(|base| {
             // Accept a base of type Base<Node3D> and directly forward it.
             VFNField {
-                map: map_ptr,
+                map: map_ptr
             }
         })
 
@@ -77,10 +80,12 @@ impl VFNMap {
 
 
 }
-
+/*
 impl Default for VFNMap {
 	fn default() -> Self {
 		Self {
+			label: GString::from("This is a VFNMap"),
 		}
 	}
 } 
+*/

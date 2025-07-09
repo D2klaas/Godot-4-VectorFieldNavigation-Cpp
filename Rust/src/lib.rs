@@ -1,18 +1,4 @@
 use godot::prelude::*;
-use std::collections::{HashMap, VecDeque};
-
-struct VectorFieldNaviation;
-
-#[gdextension]
-unsafe impl ExtensionLibrary for VectorFieldNaviation {
-    fn on_level_init(level: InitLevel) {
-        println!("[Rust]   Init level {level:?}");
-    }
-
-    fn on_level_deinit(level: InitLevel) {
-        println!("[Rust]   Deinit level {level:?}");
-    }
-}
 
 mod vfn_connection;
 use vfn_connection::VFNConnection;
@@ -25,6 +11,19 @@ pub use vfn_field::VFNField;
 
 mod vfn_map;
 pub use vfn_map::VFNMap;
+
+struct VectorFieldNavigation;
+
+#[gdextension]
+unsafe impl ExtensionLibrary for VectorFieldNavigation {
+    fn on_level_init(level: InitLevel) {
+        println!("[Rust]   Init level {level:?}");
+    }
+
+    fn on_level_deinit(level: InitLevel) {
+        println!("[Rust]   Deinit level {level:?}");
+    }
+}
 
 /* 
 #[derive(GodotClass)]
