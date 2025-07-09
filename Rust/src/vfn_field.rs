@@ -7,6 +7,9 @@ use crate::vfn_map::VFNMap;
 #[class(init, base = RefCounted)]
 pub struct VFNField {
     pub map: *const VFNMap,
+	#[export]
+	#[init(val = GString::from("This is a VFNField"))]
+	pub label: GString,
 /*
     pub size: Vector2i,
     pub effort_cutoff: f32,
@@ -38,6 +41,7 @@ impl VFNField {
     fn init(_base: Base<RefCounted>) -> Self {
         Self {
             map: std::ptr::null(),
+            label: GString::from("this is a VFNField"), 
 /*
             size: Vector2i::ZERO,
             effort_cutoff: 1e9,

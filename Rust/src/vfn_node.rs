@@ -10,4 +10,5 @@ pub struct VFNNode {
 	pub steepness: f32,             // Steigung an dieser Stelle
 	pub disabled: bool,             // Ob dieser Knoten deaktiviert ist
 	pub connections: Vec<VFNConnection>,    // Indizes der Nachbarknoten
+	pub height: f32,
 }
