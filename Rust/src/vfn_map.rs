@@ -109,11 +109,6 @@ impl VFNMap {
 
 
 	#[func]
-	fn add_node( v: Vector3 ) -> u32 {
-		return 1;
-	}
-
-	#[func]
 	fn add_connection( a: u32, b: u32 ) -> u32 {
 		return 1;
 	}
@@ -123,8 +118,18 @@ impl VFNMap {
 	}
 
 	#[func]
-	fn set_height( pos:Vector2i, height:f32 ) -> f32 {
-		return 1.0;
+	fn set_height(&mut self, index: usize, height:f32 ) {
+        if let Some(node) = self.nodes.get_mut(index) {
+            node.height = height;
+        } else {
+            godot_print!("Index {} außerhalb der gültigen Knotenliste", index);
+        }
+	}
+
+	#[func]
+	fn set_height_at(&mut self, pos:Vector2i, height:f32 ){
+		let index: i32 = pos.y * self.size.x + pos.x;
+		self.set_height( index as usize, height );
 	}
 
 	#[func]
