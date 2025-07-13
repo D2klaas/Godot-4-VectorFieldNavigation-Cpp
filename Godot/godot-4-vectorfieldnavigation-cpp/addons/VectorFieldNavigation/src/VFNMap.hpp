@@ -36,6 +36,13 @@ namespace godot {
 			Ref<VFNField> create_field();
 			void build_nodes();
 			void set_heightmap_data(const PackedFloat32Array& values );
+			void set_height( int index, float height );
+			float get_height( int index );
+
+			void set_map_size( Vector2i size );
+			Vector2i get_map_size();
+			void set_cell_size( Vector2i size );
+			Vector2i get_cell_size();
 
 		public:
 			VFNMap();

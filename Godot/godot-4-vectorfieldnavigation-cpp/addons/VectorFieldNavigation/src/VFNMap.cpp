@@ -60,6 +60,8 @@ void VFNMap::build_nodes(){
 			}
 		}
 	}
+
+	UtilityFunctions::print("Nodes created: ", nodes.size(), " nodes");
 }
 
 //fills nodes of map with height values
@@ -72,9 +74,6 @@ void VFNMap::set_heightmap_data(const PackedFloat32Array& values ) {
 		UtilityFunctions::printerr("Heightmap size mismatch. Expected ", expected_size, ", got ", values.size());
 		return;
 	}
-
-	nodes.clear();
-	nodes.reserve(expected_size);
 
 	for (VFNNode &node : nodes) {
 		node.height = values[node.index];
@@ -91,6 +90,37 @@ void VFNMap::set_heightmap_data(const PackedFloat32Array& values ) {
 	UtilityFunctions::print("Heightmap data set: ", nodes.size(), " nodes");
 }
 
+void VFNMap::set_height( int index, float height ){
+	if( index >= nodes.size() ){
+		UtilityFunctions::print("out of bounds");
+		return;
+	}
+	nodes[index].height = height;
+};
+
+float VFNMap::get_height( int index ){
+	if( index >= nodes.size() ){
+		UtilityFunctions::print("out of bounds");
+		return 0.0f;
+	}
+	return nodes[index].height;
+};
+
+//-------------------- GETTER SETTER
+
+void VFNMap::set_map_size( Vector2i size ) {
+	map_size = size;
+};
+Vector2i VFNMap::get_map_size() {
+	return map_size;
+};
+
+void VFNMap::set_cell_size( Vector2i size ) {
+	cell_size = size;	
+};
+Vector2i VFNMap::get_cell_size() {
+	return cell_size;
+};
 
 
 void VFNMap::_bind_methods() {
@@ -98,4 +128,13 @@ void VFNMap::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("create_field"), &VFNMap::create_field);
 	ClassDB::bind_method(D_METHOD("build_nodes"), &VFNMap::build_nodes);
 	ClassDB::bind_method(D_METHOD("set_heightmap_data"), &VFNMap::set_heightmap_data);
+	ClassDB::bind_method(D_METHOD("set_height"), &VFNMap::set_height);
+	ClassDB::bind_method(D_METHOD("get_height"), &VFNMap::get_height);
+
+	ClassDB::bind_method(D_METHOD("set_map_size"), &VFNMap::set_map_size);
+	ClassDB::bind_method(D_METHOD("get_map_size"), &VFNMap::get_map_size);
+	ADD_PROPERTY(PropertyInfo(Variant::VECTOR2I, "map_size"), "set_map_size", "get_map_size");
+	ClassDB::bind_method(D_METHOD("set_cell_size"), &VFNMap::set_cell_size);
+	ClassDB::bind_method(D_METHOD("get_cell_size"), &VFNMap::get_cell_size);
+	ADD_PROPERTY(PropertyInfo(Variant::VECTOR2I, "cell_size"), "set_cell_size", "get_map_size");
 }
