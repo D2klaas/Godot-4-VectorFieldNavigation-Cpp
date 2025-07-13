@@ -1,9 +1,8 @@
 [configuration]
-entry_symbol = "gdextension_init"
+entry_symbol = "vfn_library_init"
+compatibility_minimum = "4.1"
 reloadable = true
-singleton = false
-load_once = true
-library_path = "res://addons/VectorFieldNavigation/bin/vfn.gdextension.windows.template_debug.x86_64.dll"
 
-[classes]
-VFNMap = "RefCounted"
+
+[libraries]
+windows.debug.x86_64 = "res://addons/VectorFieldNavigation/bin/vfn.windows.template_debug.x86_64.dll"
