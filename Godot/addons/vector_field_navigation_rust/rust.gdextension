@@ -1,7 +1,0 @@
-[configuration]
-entry_symbol = "gdext_rust_init"
-compatibility_minimum = "4.2"
-
-
-[libraries]
-windows.debug.x86_64 = "res://addons/vector_field_navigation_rust/gdnative/bin/windows/vector_field_navigation.dll"
