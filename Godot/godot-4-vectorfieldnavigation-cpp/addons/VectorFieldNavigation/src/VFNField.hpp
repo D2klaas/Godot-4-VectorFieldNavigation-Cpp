@@ -3,6 +3,8 @@
 #include <godot_cpp/classes/ref_counted.hpp>
 #include <godot_cpp/core/class_db.hpp>
 #include <algorithm> // für std::find
+#include <queue>
+#include <limits>
 #include "VFNMap.hpp"
 
 namespace godot {
@@ -19,14 +21,17 @@ namespace godot {
 		VFNField();
 		~VFNField();
 
-		add_target( int index );
-		clear_targets();
-		remove_target( int index );
-		//void _process(double delta) override;
+		void add_target( int index );
+		void clear_targets();
+		void remove_target( int index );
+		void calculate( );
 
 	public:
 		Ref<VFNMap> map;
 		std::vector<int> targets;
+		std::vector<int> open_list;
+		std::vector<int> effort_map;
+		std::vector<int> target_map;
 	};
 
 } // namespace godot

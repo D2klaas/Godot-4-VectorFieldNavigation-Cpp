@@ -10,13 +10,19 @@
 
 namespace godot {
 
+	struct VFNConnection {
+		int target_node_index = -1;
+		float effort = 0.0f;
+	};
+
 	struct VFNNode {
 		Vector3 world_position;
-		float effort = 0.0f;
 		float height = 0.0f;
 		int index = -1;
 		bool disabled = false;
+		std::vector<VFNConnection> connections;
 	};
+
 
 	class VFNField; // <- Forward declaration
 
