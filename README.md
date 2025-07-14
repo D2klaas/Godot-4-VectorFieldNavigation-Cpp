@@ -1,2 +1,2 @@
-# Godot-4-VectorFieldNavigation-Rust
-Vector Field Navigation with Rust Extension
+# Godot-4-VectorFieldNavigation-CPP
+Vector Field Navigation in CPP for real performance
