@@ -13,6 +13,7 @@ namespace godot {
 	struct VFNConnection {
 		int target_node_index = -1;
 		float effort = 0.0f;
+		float steepness = 0.0f;
 	};
 
 	struct VFNNode {

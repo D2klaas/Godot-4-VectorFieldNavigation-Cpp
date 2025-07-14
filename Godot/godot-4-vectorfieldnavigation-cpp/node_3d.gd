@@ -24,7 +24,16 @@ func _ready() -> void:
 	map.set_heightmap_data( heightmap )
 	tick("heightmap set")
 	
-	map.set_height( 10, 5.5 )
+	for i in range(0,map.map_size.x * map.map_size.y):
+		map.set_height( i, randf_range(1,100) )
 	print(map.get_height( 10 ))
 	
-	pass
+	var field = map.create_field()
+	for i in 20:
+		field.add_target( randi_range(0,map.map_size.x * map.map_size.y) )
+	tick("prepared field")
+	
+	var result = field.calculate()
+	print("highest: ",result["highest_effort"])
+	tick("field calculated")
+	

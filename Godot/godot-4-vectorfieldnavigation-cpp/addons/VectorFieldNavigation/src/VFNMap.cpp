@@ -31,13 +31,12 @@ void VFNMap::build_nodes(){
 
 	for (int y = 0; y < height; y++) {
 		for (int x = 0; x < width; x++) {
-			int i = y * width + x;
+			int i = y * map_size.x + x;
 
 			VFNNode node;
 			node.index = i;
 			node.world_position = Vector3(x, 0.0f, y);  // y = Höhe
 			node.disabled = false;
-			nodes.push_back(node);
 
 			//--------- make connections
 
@@ -58,6 +57,8 @@ void VFNMap::build_nodes(){
 					node.connections.push_back(connection);
 				}
 			}
+
+			nodes.push_back(node);
 		}
 	}
 
@@ -84,11 +85,13 @@ void VFNMap::set_heightmap_data(const PackedFloat32Array& values ) {
 			const Vector3& a = node.world_position;
 			const Vector3& b = nodes[connection.target_node_index].world_position;
 			connection.effort = a.distance_to(b);
+			connection.steepness = abs(a.y - b.y) / connection.effort;
 		}
 	}
 
 	UtilityFunctions::print("Heightmap data set: ", nodes.size(), " nodes");
 }
+
 
 void VFNMap::set_height( int index, float height ){
 	if( index >= nodes.size() ){
@@ -96,6 +99,12 @@ void VFNMap::set_height( int index, float height ){
 		return;
 	}
 	nodes[index].height = height;
+	for (VFNConnection &connection : nodes[index].connections) {
+		const Vector3& a = nodes[index].world_position;
+		const Vector3& b = nodes[connection.target_node_index].world_position;
+		connection.effort = a.distance_to(b); 
+		connection.steepness = abs(a.y - b.y) / connection.effort;
+	}
 };
 
 float VFNMap::get_height( int index ){
