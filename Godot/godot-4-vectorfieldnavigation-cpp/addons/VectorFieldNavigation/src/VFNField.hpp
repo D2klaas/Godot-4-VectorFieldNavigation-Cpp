@@ -29,6 +29,9 @@ namespace godot {
 		void remove_target( int index );
 		Dictionary calculate( );
 
+	public: //things godot can change
+		float max_effort;
+
 	public:
 		Ref<VFNMap> map;
 		std::vector<int> targets;
@@ -36,6 +39,7 @@ namespace godot {
 		std::vector<float> effort_map;
 		std::vector<int> target_map;
 		std::vector<Vector3> vector_map;
+		std::vector<VFNPenaltyField> penalty_fields;
 		float highest_effort ;
 	};
 
