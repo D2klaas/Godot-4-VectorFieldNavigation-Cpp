@@ -4,8 +4,8 @@
 
 using namespace godot;
 
-VFNField::VFNPenaltyField() {}
-VFNField::~VFNPenaltyField() {}
+VFNPenaltyField::VFNPenaltyField() {}
+VFNPenaltyField::~VFNPenaltyField() {}
 
 void VFNPenaltyField::init( ){
 	penalty_map.resize(map->nodes.size(), 0);

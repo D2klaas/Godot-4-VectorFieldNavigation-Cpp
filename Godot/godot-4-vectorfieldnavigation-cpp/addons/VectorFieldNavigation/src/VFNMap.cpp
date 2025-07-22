@@ -25,7 +25,7 @@ Ref<VFNPenaltyField> VFNMap::create_penalty_field() {
 	penaltyfield.instantiate();
 	Ref<VFNMap> map_ref = Ref(this);
 	penaltyfield->map = map_ref;
-	penaltyfield.init();
+	penaltyfield->init();
 	return penaltyfield;
 }
 
@@ -144,6 +144,7 @@ Vector2i VFNMap::get_cell_size() {
 void VFNMap::_bind_methods() {
 	// Hier kannst du später Funktionen für GDScript verfügbar machen
 	ClassDB::bind_method(D_METHOD("create_field"), &VFNMap::create_field);
+	ClassDB::bind_method(D_METHOD("create_penalty_field"), &VFNMap::create_penalty_field);
 	ClassDB::bind_method(D_METHOD("build_nodes"), &VFNMap::build_nodes);
 	ClassDB::bind_method(D_METHOD("set_heightmap_data"), &VFNMap::set_heightmap_data);
 	ClassDB::bind_method(D_METHOD("set_height"), &VFNMap::set_height);

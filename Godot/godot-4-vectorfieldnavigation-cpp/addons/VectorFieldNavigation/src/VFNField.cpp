@@ -12,14 +12,15 @@ VFNField::~VFNField() {//destructor
 }
 
 //------------------ PENALTY FIELDS
-void VFNField::add_penalty_field(const VFNPenaltyField& penalty_field ) {
-	penalty_fields.push_back(penalty_field);
+void VFNField::add_penalty_field(const Ref<VFNPenaltyField>& penalty_field) {
+    penalty_fields.push_back(penalty_field);
 }
 
-void VFNField::remove_penalty_field(const VFNPenaltyField& penalty_field) {
-	auto it = std::remove(penalty_fields.begin(), penalty_fields.end(), penalty_field);
-	penalty_fields.erase(it, penalty_fields.end());
+void VFNField::remove_penalty_field(const Ref<VFNPenaltyField>& penalty_field) {
+    auto it = std::remove(penalty_fields.begin(), penalty_fields.end(), penalty_field);
+    penalty_fields.erase(it, penalty_fields.end());
 }
+
 
 //------------------ TARGETS
 void VFNField::add_target(int index) {
@@ -158,6 +159,8 @@ Dictionary VFNField::calculate(){
 
 
 void VFNField::_bind_methods() {
+	ClassDB::bind_method(D_METHOD("add_penalty_field"), &VFNField::add_penalty_field);
+	ClassDB::bind_method(D_METHOD("remove_penalty_field"), &VFNField::remove_penalty_field);
 	ClassDB::bind_method(D_METHOD("add_target"), &VFNField::add_target);
 	ClassDB::bind_method(D_METHOD("clear_targets"), &VFNField::clear_targets);
 	ClassDB::bind_method(D_METHOD("remove_target"), &VFNField::remove_target);

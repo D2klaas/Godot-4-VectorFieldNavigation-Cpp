@@ -20,6 +20,11 @@ namespace godot {
 
 	protected:
 		static void _bind_methods();
+	
+	public:
+		void set_effort( int index, float effort );
+		float get_effort( int index );
+		void init( );
 
 	public:
 		VFNPenaltyField();

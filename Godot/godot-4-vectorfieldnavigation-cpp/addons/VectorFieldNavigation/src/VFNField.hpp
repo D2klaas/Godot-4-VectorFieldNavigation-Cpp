@@ -13,6 +13,7 @@
 namespace godot {
 
 	class VFNMap; // <- Forward declaration
+	class VFNPenaltyField; // <- Forward declaration
 
 	class VFNField : public RefCounted {
 		GDCLASS(VFNField, RefCounted)
@@ -24,6 +25,8 @@ namespace godot {
 		VFNField();
 		~VFNField();
 
+		void add_penalty_field( const Ref<VFNPenaltyField>& penalty_field );
+		void remove_penalty_field( const Ref<VFNPenaltyField>& penalty_field );
 		void add_target( int index );
 		void clear_targets();
 		void remove_target( int index );
@@ -39,7 +42,7 @@ namespace godot {
 		std::vector<float> effort_map;
 		std::vector<int> target_map;
 		std::vector<Vector3> vector_map;
-		std::vector<VFNPenaltyField> penalty_fields;
+		std::vector<Ref<VFNPenaltyField>> penalty_fields;
 		float highest_effort ;
 	};
 

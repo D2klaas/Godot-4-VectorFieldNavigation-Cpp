@@ -7,6 +7,7 @@
 #include <godot_cpp/variant/packed_float32_array.hpp>
 #include <vector>
 #include "VFNField.hpp"
+#include "VFNPenaltyField.hpp"
 
 namespace godot {
 
@@ -35,6 +36,7 @@ namespace godot {
 
 		public:
 			Ref<VFNField> create_field();
+			Ref<VFNPenaltyField> create_penalty_field();
 			void build_nodes();
 			void set_heightmap_data(const PackedFloat32Array& values );
 			void set_height( int index, float height );
