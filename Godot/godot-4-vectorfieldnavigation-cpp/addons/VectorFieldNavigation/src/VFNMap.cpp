@@ -20,6 +20,15 @@ Ref<VFNField> VFNMap::create_field() {
 	return field;
 }
 
+Ref<VFNPenaltyField> VFNMap::create_penalty_field() {
+	Ref<VFNPenaltyField> penaltyfield;
+	penaltyfield.instantiate();
+	Ref<VFNMap> map_ref = Ref(this);
+	penaltyfield->map = map_ref;
+	penaltyfield.init();
+	return penaltyfield;
+}
+
 //buildes nodes for map with width and height
 void VFNMap::build_nodes(){
 	int width = this->map_size.x;

@@ -3,10 +3,30 @@
 
 using namespace godot;
 
-VFNField::VFNField() {}
-VFNField::~VFNField() {}
+VFNField::VFNField() { //constructor
+	max_effort = std::numeric_limits<float>::max();
+}
 
+VFNField::~VFNField() {//destructor
+
+}
+
+//------------------ PENALTY FIELDS
+void VFNField::add_penalty_field(const VFNPenaltyField& penalty_field ) {
+	penalty_fields.push_back(penalty_field);
+}
+
+void VFNField::remove_penalty_field(const VFNPenaltyField& penalty_field) {
+	auto it = std::remove(penalty_fields.begin(), penalty_fields.end(), penalty_field);
+	penalty_fields.erase(it, penalty_fields.end());
+}
+
+//------------------ TARGETS
 void VFNField::add_target(int index) {
+	if( index >= map->nodes.size() ){
+		UtilityFunctions::print("out of bounds");
+		return;
+	}
 	// Füge nur hinzu, wenn der Index noch nicht existiert
 	if (std::find(targets.begin(), targets.end(), index) == targets.end()) {
 		targets.push_back(index);
@@ -25,6 +45,7 @@ void VFNField::remove_target(int index) {
 	);
 }
 
+//------------------ CALCULATE
 Dictionary VFNField::calculate(){
 	std::deque<int>  open_list;
 
